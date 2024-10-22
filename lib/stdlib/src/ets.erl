@@ -1750,6 +1750,9 @@ The function fails with reason `badarg` in the following situations:
 update_counter(_, _, _, _) ->
     erlang:nif_error(undef).
 
+-doc """
+Returns `true` if an object with key `Key` is found, otherwise `false`.
+""".
 -doc(#{equiv => update_element/4}).
 -spec update_element(Table, Key, ElementSpec) -> boolean() when
       Table :: table(),
@@ -1775,15 +1778,13 @@ in the list is written. If the list is empty or the function fails, no updates
 are done. The function is also atomic in the sense that other processes can
 never see any intermediate results.
 
-Returns `true` if an object with key `Key` is found, otherwise `false`.
-
 The specified `Key` is used to identify the object by either _matching_ the key
 of an object in a `set` table, or _compare equal_ to the key of an object in an
 `ordered_set` table (for details on the difference, see `lookup/2` and `new/2`).
 
-If a default object `Default` is specified, it is used as the object to be
-updated if the key is missing from the table. The value in place of the key is
-ignored and replaced by the proper key value.
+The default object `Default` will be used as the object to be updated if the
+key is missing from the table. The value in place of the key is ignored and
+replaced by the proper key value.
 
 The function fails with reason `badarg` in the following situations:
 
